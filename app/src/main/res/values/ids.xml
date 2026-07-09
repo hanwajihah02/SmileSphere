@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="drawerLayout" type="id" />
+    <item name="bottomNav" type="id" />
+    <item name="navigationView" type="id" />
+    <item name="btnHamburger" type="id" />
+    <item name="nav_home" type="id" />
+    <item name="nav_learn" type="id" />
+    <item name="nav_ar" type="id" />
+    <item name="nav_quiz" type="id" />
+    <item name="nav_graph" type="id" />
+    <item name="nav_profile" type="id" />
+    <item name="nav_logout" type="id" />
+    <item name="bnav_home" type="id" />
+    <item name="bnav_learn" type="id" />
+    <item name="bnav_ar" type="id" />
+    <item name="bnav_quiz" type="id" />
+    <item name="bnav_graph" type="id" />
+</resources>

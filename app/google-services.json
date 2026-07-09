@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "933517267606",
+    "project_id": "smilesphere-bade7",
+    "storage_bucket": "smilesphere-bade7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:933517267606:android:c00288aa2b197ab33a28b7",
+        "android_client_info": {
+          "package_name": "com.example.smilesphere"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAqABQ-4tTMVmoT9HpSs-sgemZ5gOufc8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

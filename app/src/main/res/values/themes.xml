@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- This parent theme provides the support needed for MaterialButtons and BottomNav -->
+    <style name="Theme.SmileSphere" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Brand Colors -->
+        <item name="colorPrimary">@color/ss_mint_dark</item>
+        <item name="colorPrimaryVariant">@color/ss_mint</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Secondary Colors -->
+        <item name="colorSecondary">@color/ss_sky</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <!-- Status Bar -->
+        <item name="android:statusBarColor">@color/ss_mint_dark</item>
+
+        <!-- Background -->
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+</resources>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@drawable/bg_app">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="28dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SmileSphere"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/ss_mint_dark"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create your classroom account"
+            android:textSize="14sp"
+            android:textColor="@color/ss_text_soft"
+            android:layout_gravity="center"
+            android:layout_marginBottom="28dp"/>
+
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:hint="Full name"
+            android:inputType="textPersonName"
+            android:background="@drawable/bg_input_modern"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:textColor="@color/ss_ink"
+            android:textColorHint="@color/ss_text_soft"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:hint="Email address"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/bg_input_modern"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:textColor="@color/ss_ink"
+            android:textColorHint="@color/ss_text_soft"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:hint="Password (min. 6 characters)"
+            android:inputType="textPassword"
+            android:background="@drawable/bg_input_modern"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:textColor="@color/ss_ink"
+            android:textColorHint="@color/ss_text_soft"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/etConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:hint="Confirm password"
+            android:inputType="textPassword"
+            android:background="@drawable/bg_input_modern"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:textColor="@color/ss_ink"
+            android:textColorHint="@color/ss_text_soft"
+            android:layout_marginBottom="24dp"/>
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Create account"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_button_primary"
+            android:layout_marginBottom="14dp"
+            app:cornerRadius="18dp"/>
+
+        <TextView
+            android:id="@+id/tvGoLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already have an account? Sign in"
+            android:textColor="@color/ss_mint_dark"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:padding="8dp"/>
+    </LinearLayout>
+</ScrollView>

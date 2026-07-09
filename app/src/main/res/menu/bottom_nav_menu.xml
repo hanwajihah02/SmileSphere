@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bnav_home"
+        android:icon="@drawable/ic_home"
+        android:title="Home"/>
+
+    <item
+        android:id="@+id/bnav_learn"
+        android:icon="@drawable/ic_learn"
+        android:title="Learn"/>
+
+    <item
+        android:id="@+id/bnav_ar"
+        android:icon="@drawable/ic_ar"
+        android:title="AR Scan"/>
+
+    <item
+        android:id="@+id/bnav_quiz"
+        android:icon="@drawable/ic_quiz"
+        android:title="Quiz"/>
+
+</menu>

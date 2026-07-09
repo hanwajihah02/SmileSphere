@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/bg_app">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:background="@drawable/bg_topbar"
+            android:elevation="2dp">
+
+            <ImageView
+                android:id="@+id/btnHamburger"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_menu"
+                android:layout_marginEnd="12dp"
+                android:contentDescription="Menu"/>
+
+            <TextView
+                android:id="@+id/tvQuizLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Quiz Session"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/ss_ink"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bottomNav"
+                android:padding="22dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvQNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Question 1 of 10"
+                        android:textColor="@color/ss_mint_dark"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/bg_badge"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp"
+                        android:paddingTop="7dp"
+                        android:paddingBottom="7dp"
+                        android:layout_marginBottom="12dp"/>
+
+                    <ProgressBar
+                        android:id="@+id/quizProgressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:progress="10"
+                        android:progressTint="@color/ss_mint"
+                        android:progressBackgroundTint="@color/ss_line"
+                        android:layout_marginBottom="24dp"/>
+
+                    <TextView
+                        android:id="@+id/tvQuestion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="How many times a day should you brush your teeth?"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/ss_ink"
+                        android:lineSpacingExtra="4dp"
+                        android:layout_marginBottom="24dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/containerOptions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"/>
+
+                    <Button
+                        android:id="@+id/btnNextQ"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/bg_button_primary"
+                        android:text="Next question"
+                        android:textAllCaps="false"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        app:cornerRadius="18dp"/>
+                </LinearLayout>
+            </ScrollView>
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNav"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white"
+                app:itemIconTint="@color/bottom_nav_item"
+                app:itemTextColor="@color/bottom_nav_item"
+                app:labelVisibilityMode="labeled"
+                app:menu="@menu/bottom_nav_menu" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/white"
+        app:headerLayout="@layout/drawer_header"
+        app:menu="@menu/drawer_menu"
+        app:itemIconTint="@color/ss_mint_dark"
+        app:itemTextColor="@color/ss_ink"/>
+</androidx.drawerlayout.widget.DrawerLayout>
