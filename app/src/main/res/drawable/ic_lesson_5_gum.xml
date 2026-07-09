@@ -1,0 +1,39 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="240dp"
+    android:height="240dp"
+    android:viewportWidth="240"
+    android:viewportHeight="240">
+
+    <!-- Left tooth: healthy -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="@color/ss_mint_dark"
+        android:strokeWidth="2.5"
+        android:pathData="M35,90 C35,65 52,50 68,50 C84,50 101,65 101,90 C101,110 92,126 80,133 L56,133 C44,126 35,110 35,90 Z" />
+    <path
+        android:fillColor="@color/ss_mint_dark"
+        android:pathData="M28,131 L108,131 L108,140 C94,146 80,148 68,148 C56,148 42,146 28,140 Z" />
+
+    <!-- Right tooth: inflamed (gingivitis) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#D9534F"
+        android:strokeWidth="2.5"
+        android:pathData="M139,90 C139,65 156,50 172,50 C188,50 205,65 205,90 C205,110 196,126 184,133 L160,133 C148,126 139,110 139,90 Z" />
+    <path
+        android:fillColor="#D9534F"
+        android:pathData="M130,128 C138,124 150,128 156,136 C162,144 158,152 148,150 C140,148 130,144 126,138 C124,134 126,130 130,128 Z" />
+    <path
+        android:fillColor="#D9534F"
+        android:pathData="M132,131 L212,131 L212,141 C198,148 184,150 172,150 C160,150 146,148 132,141 Z" />
+
+    <!-- Small blood drop indicator near inflamed gum -->
+    <path
+        android:fillColor="#D9534F"
+        android:pathData="M188,158 C188,153 192,148 195,144 C198,148 202,153 202,158 C202,163 198,166 195,166 C192,166 188,163 188,158 Z" />
+
+    <!-- Divider -->
+    <path
+        android:fillColor="#E5E0D5"
+        android:pathData="M119,40 L121,40 L121,190 L119,190 Z" />
+</vector>

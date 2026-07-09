@@ -1,0 +1,38 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="240dp"
+    android:height="240dp"
+    android:viewportWidth="240"
+    android:viewportHeight="240">
+
+    <!-- Root (bottom, mint outline) -->
+    <path
+        android:fillColor="#F4EFE6"
+        android:pathData="M95,150 C90,180 92,205 100,220 C104,228 112,228 116,220 C122,205 122,185 120,150 Z" />
+    <path
+        android:fillColor="#F4EFE6"
+        android:pathData="M120,150 C126,180 128,205 122,220 C118,228 128,228 132,220 C142,205 140,180 135,150 Z" />
+
+    <!-- Crown outer (enamel) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="@color/ss_mint_dark"
+        android:strokeWidth="2"
+        android:pathData="M60,90 C60,55 90,35 115,35 C140,35 170,55 170,90 C170,115 160,140 135,150 L100,150 C70,140 60,115 60,90 Z" />
+
+    <!-- Dentin layer -->
+    <path
+        android:fillColor="#EADFC8"
+        android:pathData="M80,90 C80,68 98,55 115,55 C132,55 150,68 150,90 C150,108 142,124 128,132 L102,132 C88,124 80,108 80,90 Z" />
+
+    <!-- Pulp (center) -->
+    <path
+        android:fillColor="#D9534F"
+        android:pathData="M100,88 C100,76 106,68 115,68 C124,68 130,76 130,88 C130,100 124,112 115,120 C106,112 100,100 100,88 Z" />
+
+    <!-- Gum line -->
+    <path
+        android:fillColor="@color/ss_mint_dark"
+        android:pathData="M50,148 L180,148 L180,158 C160,166 140,168 115,168 C90,168 70,166 50,158 Z" />
+
+    <!-- Labels as simple dots + lines removed for clarity; keep icon minimal -->
+</vector>

@@ -1,0 +1,36 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="240dp"
+    android:height="240dp"
+    android:viewportWidth="240"
+    android:viewportHeight="240">
+
+    <!-- Tooth -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="@color/ss_mint_dark"
+        android:strokeWidth="2.5"
+        android:pathData="M60,95 C60,62 88,42 115,42 C142,42 170,62 170,95 C170,122 158,145 140,155 L90,155 C72,145 60,122 60,95 Z" />
+
+    <!-- Gum line -->
+    <path
+        android:fillColor="@color/ss_mint_dark"
+        android:pathData="M50,153 L180,153 L180,164 C158,172 138,174 115,174 C92,174 72,172 50,164 Z" />
+
+    <!-- Plaque patch (yellow, upper area) -->
+    <path
+        android:fillColor="#E8D44D"
+        android:pathData="M75,80 C75,65 90,55 108,58 C120,60 128,70 122,82 C114,96 90,96 80,90 C76,87 74,84 75,80 Z" />
+
+    <!-- Cavity spot (dark brown) -->
+    <path
+        android:fillColor="#5C3A21"
+        android:pathData="M130,115 c0,-9 8,-15 16,-13 c8,2 12,10 8,18 c-4,8 -16,9 -22,3 c-3,-3 -3,-6 -2,-8 Z" />
+
+    <!-- Fluoride shield (bottom right, teal) -->
+    <path
+        android:fillColor="#2E9AA5"
+        android:pathData="M182,150 L200,142 L218,150 L218,168 C218,182 210,192 200,198 C190,192 182,182 182,168 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M192,165 L198,171 L210,157 L214,161 L198,179 L188,169 Z" />
+</vector>

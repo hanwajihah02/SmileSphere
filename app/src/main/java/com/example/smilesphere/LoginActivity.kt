@@ -56,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
         } else {
             InputType.TYPE_TEXT_VARIATION_PASSWORD or InputType.TYPE_CLASS_TEXT
         }
-        tvTogglePassword.text = if (isPasswordVisible) "🙈" else "👁"
+        tvTogglePassword.text = if (isPasswordVisible) "◉" else "⊘"
 
         // keep cursor at the end after switching input type
         etPassword.setSelection(etPassword.text.length)

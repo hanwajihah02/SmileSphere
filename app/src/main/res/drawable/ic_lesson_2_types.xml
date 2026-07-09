@@ -1,0 +1,45 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="240dp"
+    android:height="240dp"
+    android:viewportWidth="240"
+    android:viewportHeight="240">
+
+    <!-- Baseline -->
+    <path
+        android:fillColor="@color/ss_mint_dark"
+        android:pathData="M20,180 L220,180 L220,186 L20,186 Z" />
+
+    <!-- Incisor: flat chisel edge -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="@color/ss_mint_dark"
+        android:strokeWidth="2.5"
+        android:pathData="M30,130 L30,168 L62,168 L62,130 C62,110 30,110 30,130 Z" />
+
+    <!-- Canine: pointed tip -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="@color/ss_sky"
+        android:strokeWidth="2.5"
+        android:pathData="M85,168 L85,140 C85,140 90,105 100,140 L100,168 Z" />
+
+    <!-- Premolar: rounded with two small cusps -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="@color/ss_mint_dark"
+        android:strokeWidth="2.5"
+        android:pathData="M125,168 L125,140 C125,120 133,112 140,120 C147,112 155,120 155,140 L155,168 Z" />
+
+    <!-- Molar: wide with multiple cusps -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="@color/ss_sky"
+        android:strokeWidth="2.5"
+        android:pathData="M178,168 L178,138 C178,120 184,114 190,120 C194,112 202,112 206,120 C212,114 218,120 218,138 L218,168 Z" />
+
+    <!-- Small text-free indicator dots under each tooth for grouping -->
+    <path android:fillColor="@color/ss_mint_dark" android:pathData="M44,196 m-4,0 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0" />
+    <path android:fillColor="@color/ss_sky" android:pathData="M92,196 m-4,0 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0" />
+    <path android:fillColor="@color/ss_mint_dark" android:pathData="M140,196 m-4,0 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0" />
+    <path android:fillColor="@color/ss_sky" android:pathData="M198,196 m-4,0 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0" />
+</vector>

@@ -1,0 +1,41 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="240dp"
+    android:height="240dp"
+    android:viewportWidth="240"
+    android:viewportHeight="240">
+
+    <!-- Tooth (simple crown + gum) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="@color/ss_mint_dark"
+        android:strokeWidth="2.5"
+        android:pathData="M70,110 C70,80 95,65 118,65 C141,65 166,80 166,110 C166,135 155,155 140,163 L96,163 C81,155 70,135 70,110 Z" />
+
+    <!-- Gum line -->
+    <path
+        android:fillColor="@color/ss_mint_dark"
+        android:pathData="M60,161 L176,161 L176,172 C155,180 138,182 118,182 C98,182 81,180 60,172 Z" />
+
+    <!-- Toothbrush handle, angled 45 degrees toward gumline -->
+    <path
+        android:fillColor="@color/ss_sky"
+        android:pathData="M185,40 L205,60 L145,120 C140,125 132,125 127,120 C122,115 122,107 127,102 Z" />
+
+    <!-- Brush head bristle lines -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M132,107 L157,82 L162,87 L137,112 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M140,115 L165,90 L169,94 L144,119 Z" />
+
+    <!-- Circular motion arrow near gumline -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="@color/ss_mint_dark"
+        android:strokeWidth="2.5"
+        android:pathData="M95,150 a20,14 0 1,1 15,12" />
+    <path
+        android:fillColor="@color/ss_mint_dark"
+        android:pathData="M108,158 L120,162 L110,170 Z" />
+</vector>

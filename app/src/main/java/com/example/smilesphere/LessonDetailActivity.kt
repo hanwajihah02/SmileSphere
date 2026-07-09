@@ -3,6 +3,7 @@ package com.example.smilesphere
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -22,6 +23,8 @@ class LessonDetailActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.tvToolbarTitle).text = title
         findViewById<TextView>(R.id.tvTitle).text        = title
         findViewById<TextView>(R.id.tvBody).text         = body
+        findViewById<ImageView>(R.id.ivLessonImage)
+            .setImageResource(getImageForLesson(lessonOrder))
 
         // Back button
         findViewById<TextView>(R.id.btnBack).setOnClickListener {
@@ -42,5 +45,14 @@ class LessonDetailActivity : AppCompatActivity() {
                 })
             }
         }
+    }
+
+    private fun getImageForLesson(order: Int): Int = when (order) {
+        1 -> R.drawable.lesson1_anatomy
+        2 -> R.drawable.lesson2_types
+        3 -> R.drawable.lesson3_brushing
+        4 -> R.drawable.lesson4_plaque
+        5 -> R.drawable.lesson5_gum
+        else -> R.drawable.lesson6_services
     }
 }

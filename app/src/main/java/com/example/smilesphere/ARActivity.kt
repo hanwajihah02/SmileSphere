@@ -50,9 +50,9 @@ class ARActivity : BaseActivity() {
     // ── Gesture tracking ──────────────────────────────────────────
     private lateinit var scaleGestureDetector: ScaleGestureDetector
     private lateinit var doubleTapGestureDetector: android.view.GestureDetector
-    private var currentScale    = 0.70f
-    private val minScale        = 0.30f
-    private val maxScale        = 1.00f
+    private var currentScale    = 1.40f
+    private val minScale        = 0.60f
+    private val maxScale        = 2.00f
     private val zoomSensitivity = 0.55f
     private var lastTouchX      = 0f
     private var isDragging      = false
@@ -165,7 +165,7 @@ class ARActivity : BaseActivity() {
                 override fun onDoubleTap(e: MotionEvent): Boolean {
                     if (!modelPlaced) return false
 
-                    currentScale = 0.70f
+                    currentScale = 1.40f
                     val toothNode = modelNode?.childNodes?.firstOrNull() as? ModelNode
                     toothNode?.scale = Scale(currentScale, currentScale, currentScale)
 
@@ -503,7 +503,7 @@ class ARActivity : BaseActivity() {
             val modelInstance = arSceneView.modelLoader.createModelInstance(modelPath)
             val anchorNode    = AnchorNode(arSceneView.engine, hitResult.createAnchor())
 
-            currentScale = 0.70f   // reset to baseline every time a model is placed
+            currentScale = 1.40f   // reset to baseline every time a model is placed
 
             val toothNode = ModelNode(modelInstance).apply {
                 if (animationCount > 0) playAnimation(0, loop = true)

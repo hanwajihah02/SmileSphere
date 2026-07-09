@@ -1,0 +1,46 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="240dp"
+    android:height="240dp"
+    android:viewportWidth="240"
+    android:viewportHeight="240">
+
+    <!-- Clipboard (records/checkup) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="@color/ss_mint_dark"
+        android:strokeWidth="2.5"
+        android:pathData="M30,55 L90,55 L90,175 L30,175 Z" />
+    <path
+        android:fillColor="@color/ss_mint_dark"
+        android:pathData="M48,48 L72,48 L72,62 L48,62 Z" />
+    <path
+        android:fillColor="@color/ss_mint_dark"
+        android:pathData="M40,80 L80,80 L80,86 L40,86 Z" />
+    <path
+        android:fillColor="@color/ss_mint_dark"
+        android:pathData="M40,98 L80,98 L80,104 L40,104 Z" />
+    <path
+        android:fillColor="@color/ss_sky"
+        android:pathData="M40,118 L52,130 L72,108 L77,113 L52,141 L35,123 Z" />
+
+    <!-- Tooth with plus (dental treatment) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="@color/ss_sky"
+        android:strokeWidth="2.5"
+        android:pathData="M115,90 C115,65 132,50 150,50 C168,50 185,65 185,90 C185,110 176,126 164,133 L136,133 C124,126 115,110 115,90 Z" />
+    <path
+        android:fillColor="@color/ss_mint_dark"
+        android:pathData="M108,131 L192,131 L192,140 C178,146 164,148 150,148 C136,148 122,146 108,140 Z" />
+    <path
+        android:fillColor="#2E9AA5"
+        android:pathData="M144,72 L156,72 L156,84 L168,84 L168,96 L156,96 L156,108 L144,108 L144,96 L132,96 L132,84 L144,84 Z" />
+
+    <!-- Shield (prevention / free service) -->
+    <path
+        android:fillColor="@color/ss_mint_dark"
+        android:pathData="M172,150 L198,140 L224,150 L224,172 C224,190 212,203 198,210 C184,203 172,190 172,172 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M184,170 L193,179 L212,158 L217,163 L193,189 L179,175 Z" />
+</vector>
