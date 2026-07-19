@@ -154,21 +154,32 @@ class DashboardActivity : BaseActivity() {
 
     // ─── School spinner + chart ───────────────────────────────────────────────
 
+    // FIXED: now built from the current user's own sessions instead of the
+    // global "schools" collection, so a new account starts with an empty spinner
+    // instead of showing every school any user has ever visited.
     private fun loadSchoolsForSpinner() {
-        db.collection("schools")
-            .orderBy("name")
+        val uid = auth.currentUser?.uid ?: return
+
+        db.collection("sessions")
+            .whereEqualTo("uid", uid)
             .get()
             .addOnSuccessListener { docs ->
                 schoolList.clear()
-                schoolList.addAll(docs.mapNotNull { it.getString("name") })
+                schoolList.addAll(
+                    docs.mapNotNull { it.getString("school") }
+                        .distinct()
+                        .sorted()
+                )
 
                 if (schoolList.isEmpty()) {
                     spinnerSchool.visibility = View.GONE
+                    barChart.visibility = View.GONE
                     tvNoData.visibility = View.VISIBLE
-                    tvNoData.text = "No schools recorded yet."
+                    tvNoData.text = "No sessions yet. Start a session to see your data here."
                     return@addOnSuccessListener
                 }
 
+                spinnerSchool.visibility = View.VISIBLE
                 val adapter = ArrayAdapter(
                     this,
                     R.layout.spinner_school_item,
@@ -187,14 +198,24 @@ class DashboardActivity : BaseActivity() {
                         override fun onNothingSelected(parent: AdapterView<*>) {}
                     }
             }
+            .addOnFailureListener {
+                spinnerSchool.visibility = View.GONE
+                barChart.visibility = View.GONE
+                tvNoData.visibility = View.VISIBLE
+                tvNoData.text = "Could not load your schools."
+            }
     }
 
+    // FIXED: now filters by uid AND school, so selecting a school only shows
+    // the current user's own sessions for that school, not every user's.
     private fun loadChartForSchool(school: String) {
+        val uid = auth.currentUser?.uid ?: return
         tvNoData.visibility = View.GONE
         barChart.visibility = View.VISIBLE
         progressBar.visibility = View.VISIBLE
 
         db.collection("sessions")
+            .whereEqualTo("uid", uid)
             .whereEqualTo("school", school)
             .orderBy("timestamp", Query.Direction.ASCENDING)
             .get()
@@ -308,8 +329,6 @@ class DashboardActivity : BaseActivity() {
         super.onResume()
         // Refresh stats when returning from a session
         loadSummaryStats()
-        if (schoolList.isNotEmpty()) {
-            loadChartForSchool(schoolList[spinnerSchool.selectedItemPosition])
-        }
+        loadSchoolsForSpinner()
     }
 }

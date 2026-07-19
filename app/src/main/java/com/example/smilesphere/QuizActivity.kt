@@ -19,12 +19,14 @@ class QuizActivity : BaseActivity() {
     private lateinit var tvQuestion: TextView
     private lateinit var containerOptions: LinearLayout
     private lateinit var btnNextQ: Button
+    private lateinit var btnPrevQ: Button
+    private lateinit var quizProgressBar: ProgressBar
 
     private val db   = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
 
     private val questions = mutableListOf<Map<String, Any>>()
-    // tallies[questionIndex][optionIndex] = count
+
     private val tallies   = mutableListOf<MutableList<Int>>()
     private var currentQ  = 0
     private var quizType  = "pre"
@@ -42,7 +44,7 @@ class QuizActivity : BaseActivity() {
         // Read intent extras
         quizType    = intent.getStringExtra("quizType")
             ?: intent.getStringExtra("type")
-            ?: "pre"
+                    ?: "pre"
         schoolName  = intent.getStringExtra("school")      ?: ""
         sessionDate = intent.getStringExtra("date")        ?: ""
         sessionKey  = intent.getStringExtra("sessionKey")  ?: ""
@@ -52,12 +54,26 @@ class QuizActivity : BaseActivity() {
         tvQuestion       = findViewById(R.id.tvQuestion)
         containerOptions = findViewById(R.id.containerOptions)
         btnNextQ         = findViewById(R.id.btnNextQ)
+        btnPrevQ         = findViewById(R.id.btnPrevQ)
+        quizProgressBar  = findViewById(R.id.quizProgressBar)
 
         tvQuizLabel.text =
             if (quizType == "pre") "PRE-QUIZ" else "POST-QUIZ"
 
         loadQuestions()
         btnNextQ.setOnClickListener { onNextClicked() }
+        btnPrevQ.setOnClickListener { onPrevClicked() }
+    }
+
+    // ── Helper: builds a normal/pressed ColorStateList for button press feedback ──
+    private fun pressedColorStateList(normal: Int, pressed: Int): android.content.res.ColorStateList {
+        return android.content.res.ColorStateList(
+            arrayOf(
+                intArrayOf(android.R.attr.state_pressed),
+                intArrayOf()
+            ),
+            intArrayOf(pressed, normal)
+        )
     }
 
     private fun loadQuestions() {
@@ -95,6 +111,12 @@ class QuizActivity : BaseActivity() {
             if (currentQ == questions.size - 1)
                 "Submit" else "Next Question →"
 
+        btnPrevQ.isEnabled = currentQ > 0
+        btnPrevQ.alpha = if (currentQ > 0) 1f else 0.4f
+
+        quizProgressBar.max      = 100
+        quizProgressBar.progress = ((currentQ + 1) * 100) / questions.size
+
         containerOptions.removeAllViews()
 
         opts.forEachIndexed { i, option ->
@@ -129,17 +151,18 @@ class QuizActivity : BaseActivity() {
                 text            = "−"
                 textSize        = 18f
                 setTextColor(Color.WHITE)
-                backgroundTintList =
-                    android.content.res.ColorStateList
-                        .valueOf(Color.parseColor("#E24B4A"))
+                backgroundTintList = pressedColorStateList(
+                    normal  = Color.parseColor("#E24B4A"),
+                    pressed = Color.parseColor("#A83232")
+                )
                 val lp = LinearLayout.LayoutParams(88, 88)
                 lp.marginEnd = 4
                 layoutParams = lp
             }
 
-            // ── count EditText ───────────────────────────────
+            // ── count EditText — restores saved tally instead of always "0" ──
             val etCount = EditText(this).apply {
-                setText("0")
+                setText(tallies[currentQ][i].toString())
                 textSize  = 16f
                 gravity   = Gravity.CENTER
                 inputType = InputType.TYPE_CLASS_NUMBER
@@ -157,9 +180,10 @@ class QuizActivity : BaseActivity() {
                 text            = "+"
                 textSize        = 18f
                 setTextColor(Color.WHITE)
-                backgroundTintList =
-                    android.content.res.ColorStateList
-                        .valueOf(Color.parseColor("#1D9E75"))
+                backgroundTintList = pressedColorStateList(
+                    normal  = Color.parseColor("#1D9E75"),
+                    pressed = Color.parseColor("#146B52")
+                )
                 layoutParams = LinearLayout.LayoutParams(88, 88)
             }
 
@@ -205,6 +229,14 @@ class QuizActivity : BaseActivity() {
                 ?: continue
             tallies[currentQ][i] =
                 et.text.toString().toIntOrNull() ?: 0
+        }
+    }
+
+    private fun onPrevClicked() {
+        saveCurrentTallies()
+        if (currentQ > 0) {
+            currentQ--
+            showQuestion()
         }
     }
 

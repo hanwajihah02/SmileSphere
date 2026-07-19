@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Pressed state: darker mint -->
+    <!-- Pressed state: darker purple -->
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
-            <solid android:color="#1B8C6F" />
+            <solid android:color="#5A52B8" />
             <corners android:radius="18dp" />
         </shape>
     </item>
 
-    <!-- Default state: original mint -->
+    <!-- Default state: purple (matches Pre-Quiz bar chart color) -->
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#27B894" />
+            <solid android:color="#7F77DD" />
             <corners android:radius="18dp" />
         </shape>
     </item>

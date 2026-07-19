@@ -60,6 +60,11 @@ class ARActivity : BaseActivity() {
     private val dragThresholdPx = 12f
     // ──────────────────────────────────────────────────────────────
 
+    // ── Hotspot jitter smoothing ────────────────────────────────────
+    private val smoothedPositions = mutableMapOf<String, FloatArray>()
+    private val smoothingFactor = 0.25f  // lower = smoother/slower, higher = snappier/twitchier
+    // ──────────────────────────────────────────────────────────────
+
     private var activeHotspots: List<HotspotDef> = emptyList()
 
 
@@ -77,6 +82,14 @@ class ARActivity : BaseActivity() {
     private val lesson3StepOrder = listOf("Step1", "Step2", "Step3", "Step4", "Step5")
     private val totalSteps = lesson3StepOrder.size
     // ──────────────────────────────────────────────────────────────
+
+    // ── Hotspot tuning debug panel (TEMPORARY — remove once tuning is finalized) ──
+    private var debugPanel: LinearLayout? = null
+    private var debugToothIndex = 0
+    private var debugStep = 0.005f
+    private lateinit var tvDebugInfo: TextView
+    // ──────────────────────────────────────────────────────────────
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -320,9 +333,7 @@ class ARActivity : BaseActivity() {
             val rx = sx * cosY + sz * sinY
             val rz = -sx * sinY + sz * cosY
 
-            // Transform through the anchor's full pose (rotation + position), not just
-// its position. This makes dots land correctly no matter which direction
-// you were facing when you tapped to place the model.
+
             val localOffset = floatArrayOf(rx, sy, rz)
             val worldPos = anchorPose.transformPoint(localOffset)
             val worldPoint = floatArrayOf(worldPos[0], worldPos[1], worldPos[2], 1f)
@@ -337,11 +348,25 @@ class ARActivity : BaseActivity() {
             val ndcX = clipPoint[0] / clipPoint[3]
             val ndcY = clipPoint[1] / clipPoint[3]
 
-            val screenX = (ndcX + 1f) / 2f * arSceneView.width
-            val screenY = (1f - ndcY) / 2f * arSceneView.height
+            val rawX = (ndcX + 1f) / 2f * arSceneView.width
+            val rawY = (1f - ndcY) / 2f * arSceneView.height
 
-            if (screenX < 0 || screenX > arSceneView.width  ||
-                screenY < 0 || screenY > arSceneView.height) return@forEach
+            if (rawX < 0 || rawX > arSceneView.width  ||
+                rawY < 0 || rawY > arSceneView.height) return@forEach
+
+            // Smooth out frame-to-frame jitter so small AR tracking noise doesn't
+            // show up as visible dot swinging, especially on low-texture/reflective surfaces
+            val prev = smoothedPositions[hotspot.label]
+            val screenX: Float
+            val screenY: Float
+            if (prev == null) {
+                screenX = rawX
+                screenY = rawY
+            } else {
+                screenX = prev[0] + (rawX - prev[0]) * smoothingFactor
+                screenY = prev[1] + (rawY - prev[1]) * smoothingFactor
+            }
+            smoothedPositions[hotspot.label] = floatArrayOf(screenX, screenY)
 
             newDots.add(
                 HotspotOverlayView.ScreenDot(
@@ -360,18 +385,18 @@ class ARActivity : BaseActivity() {
 
     private fun getHotspotOffsetsForLesson(order: Int): List<HotspotDef> = when (order) {
         1 -> listOf(
-            HotspotDef("Crown",    offsetX =  0.00f, offsetY =  0.06f),
-            HotspotDef("Enamel",   offsetX =  0.03f, offsetY =  0.04f),
-            HotspotDef("Dentin",   offsetX = -0.03f, offsetY =  0.02f),
-            HotspotDef("Pulp",     offsetX =  0.00f, offsetY =  0.01f),
-            HotspotDef("Root",     offsetX =  0.00f, offsetY = -0.05f),
-            HotspotDef("Gum",      offsetX =  0.03f, offsetY = -0.01f)
+            HotspotDef("Crown",    offsetX =  -4.999794E-4f, offsetY = 1.7462298E-9f, offsetZ = -0.0035f),
+            HotspotDef("Enamel",   offsetX =  0.0029999798f, offsetY =  0.008000005f, offsetZ = 0.0025f),
+            HotspotDef("Dentin",   offsetX = 0.0029999798f, offsetY =  0.008000005f, offsetZ = 0.0025f),
+            HotspotDef("Pulp",     offsetX = 9.999999E-4f, offsetY = 0.005499999f, offsetZ = 0.0015f),
+            HotspotDef("Root",     offsetX = -5.0000014E-4f, offsetY = 0.0019999929f, offsetZ = -0.0015000019f),
+            HotspotDef("Gum",      offsetX = -4.999794E-4f, offsetY = 1.7462298E-9f, offsetZ = -0.0035f)
         )
         2 -> listOf(
-            HotspotDef("Incisor",  offsetX = -0.017000003f, offsetY = -0.013000001f, offsetZ = 0.006f),
-            HotspotDef("Canine",   offsetX = -0.01f, offsetY = -0.011f, offsetZ = 0.01f),
-            HotspotDef("Premolar", offsetX = 0.0069999993f, offsetY = 9.999998E-4f, offsetZ = 0.0020000003f),
-            HotspotDef("Molar",    offsetX = 0.017f, offsetY = -0.011000001f, offsetZ = -0.006f)
+            HotspotDef("Incisor",  offsetX = -0.017000003f, offsetY = -0.02999999f, offsetZ = 0.005000001f),
+            HotspotDef("Canine",   offsetX = -0.0029999986f, offsetY = -0.01f, offsetZ = 0.005499999f),
+            HotspotDef("Premolar", -0.011000003f, offsetY = -0.018499998f, offsetZ = -0.0014999851f),
+            HotspotDef("Molar",    offsetX = -0.0065000006f, offsetY = -0.0075000003f, offsetZ = 0.002000001f)
 
         )
         3 -> listOf(
@@ -382,15 +407,15 @@ class ARActivity : BaseActivity() {
             HotspotDef("Step5",    offsetX =  0.04f, offsetY = -0.05f)
         )
         4 -> listOf(
-            HotspotDef("Plaque",      offsetX =  -2.3283064E-10f, offsetY =  -0.0039999997f, offsetZ = -0.001f, colorHex ="#E8D44D"),
-            HotspotDef("Cavity",      offsetX = -0.01f, offsetY =  -0.011f, offsetZ = 0.0f, colorHex = "#5C3A21"),
-            HotspotDef("Fluoride",    offsetX = 0.013f, offsetY = 0.008000001f, offsetZ = 0.003f, colorHex = "#2E9AA5")
+            HotspotDef("Plaque",      offsetX =  -2.3283064E-10f, offsetY = -0.007f, offsetZ = -0.001f, colorHex = "#E8D44D"),
+            HotspotDef("Cavity",      offsetX = -0.011f, offsetY = -0.011f, offsetZ = -0.006499999f, colorHex = "#5C3A21"),
+            HotspotDef("Fluoride",    offsetX = 0.009f, offsetY = 0.010000002f, offsetZ = 0.0014999998f, colorHex = "#2E9AA5")
 
         )
         5 -> listOf(
-            HotspotDef("Gingivitis",   offsetX =  -0.017000003f, offsetY =  -0.013000001f, colorHex = "#D9534F"),
-            HotspotDef("Signs",        offsetX = -0.01f, offsetY =  -0.011f, colorHex = "#E8842E"),
-            HotspotDef("Scaling",      offsetX =  0.0069999993f, offsetY =  9.999998E-4f, colorHex = "#2E9AA5")
+            HotspotDef("Gingivitis",   offsetX =  -0.021999992f, offsetY = -0.052999996f, offsetZ = -0.005f, colorHex = "#D9534F"),
+            HotspotDef("Signs",        offsetX = 1.7462298E-9f, offsetY = -0.009f, offsetZ = -0.0025000002f, colorHex = "#E8842E"),
+            HotspotDef("Scaling",      offsetX =  0.003999999f, offsetY = -2.3283064E-10f, offsetZ = 0.0f, colorHex = "#2E9AA5")
 
         )
         else -> listOf(
@@ -530,7 +555,7 @@ class ARActivity : BaseActivity() {
             currentZoneIndex = 0
 
             activeHotspots = getHotspotOffsetsForLesson(lessonOrder)
-
+            smoothedPositions.clear()
 
 
             // reset sequencing state whenever a fresh model is placed
@@ -552,6 +577,8 @@ class ARActivity : BaseActivity() {
             Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
         }
     }
+
+
 
     private fun updateInfoCard() {
         val zones = getZonesForLesson(lessonOrder)

@@ -13,3 +13,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+.codex-chapter45.docx
+.codex-docx-extract/
+.idea/

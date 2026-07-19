@@ -71,7 +71,7 @@ class HotspotOverlayView @JvmOverloads constructor(
                 canvas.drawCircle(dot.x, dot.y, highlightRadiusPx, highlightDotPaint)
                 canvas.drawCircle(dot.x, dot.y, highlightRadiusPx, highlightRingPaint)
             } else if (dot.colorHex != null) {
-                // NEW: use the hotspot's own color if provided (lesson 4 & 5)
+
                 val customPaint = Paint().apply {
                     color = Color.parseColor(dot.colorHex)
                     style = Paint.Style.FILL

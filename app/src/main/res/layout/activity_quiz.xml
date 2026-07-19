@@ -78,6 +78,7 @@
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
                         android:layout_height="8dp"
+                        android:max="100"
                         android:progress="10"
                         android:progressTint="@color/ss_mint"
                         android:progressBackgroundTint="@color/ss_line"
@@ -100,17 +101,37 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"/>
 
-                    <Button
-                        android:id="@+id/btnNextQ"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/bg_button_primary"
-                        android:text="Next question"
-                        android:textAllCaps="false"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        app:cornerRadius="18dp"/>
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="20dp">
+
+                        <Button
+                            android:id="@+id/btnPrevQ"
+                            android:layout_width="0dp"
+                            android:layout_height="56dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/bg_button_previous"
+                            android:text="Previous"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            app:cornerRadius="18dp"/>
+
+                        <Button
+                            android:id="@+id/btnNextQ"
+                            android:layout_width="0dp"
+                            android:layout_height="56dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_button_primary"
+                            android:text="Next question"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            app:cornerRadius="18dp"/>
+                    </LinearLayout>
                 </LinearLayout>
             </ScrollView>
 
