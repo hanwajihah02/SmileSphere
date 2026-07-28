@@ -53,9 +53,9 @@ class ResultActivity : BaseActivity() {
         )
 
         if (quizType == "pre") {
-            btnPostQuiz.text = "Continue to session modules"
+            btnPostQuiz.text = "Continue to learning modules"
             btnPostQuiz.setOnClickListener {
-                startActivity(Intent(this, SessionHomeActivity::class.java).apply {
+                startActivity(Intent(this, LearningActivity::class.java).apply {
                     putExtra("school", school)
                     putExtra("date", date)
                     putExtra("sessionKey", sessionKey)

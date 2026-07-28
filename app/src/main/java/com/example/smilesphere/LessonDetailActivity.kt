@@ -31,10 +31,20 @@ class LessonDetailActivity : AppCompatActivity() {
             finish()
         }
 
-        // Go to AR button — hidden for lesson 6 (info-only, no AR)
         val btnGoAR = findViewById<Button>(R.id.btnGoAR)
+
         if (lessonOrder == 6) {
-            btnGoAR.visibility = android.view.View.GONE
+            // Lesson 6 is info-only — repurpose this button to launch Post-Quiz
+            btnGoAR.text = "Start Post-Quiz"
+            btnGoAR.setOnClickListener {
+                startActivity(Intent(this, QuizActivity::class.java).apply {
+                    putExtra("quizType", "post")
+                    putExtra("school", school)
+                    putExtra("date", date)
+                    putExtra("sessionKey", sessionKey)
+                })
+                finish()
+            }
         } else {
             btnGoAR.setOnClickListener {
                 startActivity(Intent(this, ARActivity::class.java).apply {

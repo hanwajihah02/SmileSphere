@@ -1,7 +1,11 @@
 package com.example.smilesphere
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -16,6 +20,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
     private lateinit var etConfirm: EditText
+    private lateinit var tvPasswordMatch: TextView
     private lateinit var btnRegister: Button
     private lateinit var tvGoLogin: TextView
 
@@ -26,18 +31,49 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        etName     = findViewById(R.id.etName)
-        etEmail    = findViewById(R.id.etEmail)
-        etPassword = findViewById(R.id.etPassword)
-        etConfirm  = findViewById(R.id.etConfirm)
-        btnRegister = findViewById(R.id.btnRegister)
-        tvGoLogin  = findViewById(R.id.tvGoLogin)
+        etName          = findViewById(R.id.etName)
+        etEmail         = findViewById(R.id.etEmail)
+        etPassword      = findViewById(R.id.etPassword)
+        etConfirm       = findViewById(R.id.etConfirm)
+        tvPasswordMatch = findViewById(R.id.tvPasswordMatch)
+        btnRegister     = findViewById(R.id.btnRegister)
+        tvGoLogin       = findViewById(R.id.tvGoLogin)
 
         btnRegister.setOnClickListener { registerUser() }
 
         tvGoLogin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
+        }
+
+        // Live password-match feedback
+        val watcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                checkPasswordMatch()
+            }
+        }
+        etPassword.addTextChangedListener(watcher)
+        etConfirm.addTextChangedListener(watcher)
+    }
+
+    private fun checkPasswordMatch() {
+        val pass = etPassword.text.toString()
+        val conf = etConfirm.text.toString()
+
+        if (conf.isEmpty()) {
+            tvPasswordMatch.visibility = View.GONE
+            return
+        }
+
+        tvPasswordMatch.visibility = View.VISIBLE
+        if (pass == conf) {
+            tvPasswordMatch.text = "✓ Passwords matched"
+            tvPasswordMatch.setTextColor(Color.parseColor("#1D9E75")) // matches your app's mint
+        } else {
+            tvPasswordMatch.text = "✗ Passwords do not match"
+            tvPasswordMatch.setTextColor(Color.parseColor("#E24B4A")) // matches your app's red
         }
     }
 
@@ -70,9 +106,7 @@ class RegisterActivity : AppCompatActivity() {
                 )
                 db.collection("users").document(uid).set(user)
                     .addOnSuccessListener {
-
                         FirebaseAuth.getInstance().signOut()
-
                         Toast.makeText(this,
                             "Account created! Please log in", Toast.LENGTH_LONG).show()
                         val intent = Intent(this, LoginActivity::class.java)

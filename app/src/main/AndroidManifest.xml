@@ -47,6 +47,7 @@
         <activity android:name=".SessionHomeActivity" android:exported="false"/>
         <activity android:name=".AnalysisActivity" android:exported="false"/>
         <activity android:name=".DashboardActivity" android:exported="false"/>
+        <activity android:name=".EditLessonActivity"/>
 
     </application>
 </manifest>

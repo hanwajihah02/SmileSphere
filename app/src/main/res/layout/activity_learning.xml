@@ -69,6 +69,22 @@
                     android:textColor="@color/ss_text_soft"
                     android:layout_marginBottom="20dp"/>
 
+                <EditText
+                    android:id="@+id/etSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="Search lessons..."
+                    android:textColorHint="#AAAAAA"
+                    android:textColor="#555555"
+                    android:textSize="14sp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:background="@drawable/bg_card"
+                    android:inputType="text"
+                    android:imeOptions="actionSearch"
+                    android:singleLine="true"
+                    android:layout_marginBottom="16dp"/>
+
                 <LinearLayout
                     android:id="@+id/containerLessons"
                     android:layout_width="match_parent"

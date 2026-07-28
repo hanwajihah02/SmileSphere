@@ -24,8 +24,8 @@ class SessionSetupActivity : BaseActivity() {
     private lateinit var spinnerSchool:   Spinner
     private lateinit var etSchoolManual:  EditText
     private lateinit var tvManualLabel:   TextView
-    private lateinit var tvDate:          TextView   // ← the actual date value display
-    private lateinit var btnPickDate:     TextView   // ← TextView in your XML, not Button
+    private lateinit var tvDate:          TextView
+    private lateinit var btnPickDate:     TextView
     private lateinit var btnStartSession: Button
     private lateinit var progressBar:     ProgressBar
 
@@ -41,12 +41,12 @@ class SessionSetupActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // IDs matched exactly to your activity_session_setup.xml
+
         spinnerSchool   = findViewById(R.id.spinnerSchool)
         etSchoolManual  = findViewById(R.id.etSchoolManual)
         tvManualLabel   = findViewById(R.id.tvManualLabel)
-        tvDate          = findViewById(R.id.tvDate)          // date value TextView
-        btnPickDate     = findViewById(R.id.btnPickDate)     // "📅 Change" TextView
+        tvDate          = findViewById(R.id.tvDate)
+        btnPickDate     = findViewById(R.id.btnPickDate)
         btnStartSession = findViewById(R.id.btnStartSession)
         progressBar     = findViewById(R.id.progressBar)
 

@@ -81,7 +81,17 @@
             android:paddingEnd="18dp"
             android:textColor="@color/ss_ink"
             android:textColorHint="@color/ss_text_soft"
-            android:layout_marginBottom="24dp"/>
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/tvPasswordMatch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:paddingStart="4dp"
+            android:visibility="gone"
+            android:layout_marginBottom="20dp"/>
 
         <Button
             android:id="@+id/btnRegister"

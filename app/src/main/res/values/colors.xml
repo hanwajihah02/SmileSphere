@@ -18,4 +18,6 @@
     <color name="ss_cloud">#F5FBFF</color>
     <color name="ss_card">#FFFFFFFF</color>
     <color name="ss_line">#DCEAF2</color>
+    <color name="button_pressed_purple">#7F77DD</color>
+    <color name="button_pressed_purple_dark">#5A52B8</color>
 </resources>
